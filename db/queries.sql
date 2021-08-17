@@ -8,9 +8,14 @@ ON department.id = roles.department_id
 ORDER BY department_name;
 
 -- View all employees
-SELECT employee.id, employee.first_name, employee.last_name
-FROM roles JOIN employee
-ON roles.department_id = employee.manager_id;
+WITH manager(manager_name, id, manager_id) as 
+    (SELECT e1.first_name, e1.id, e2.manager_id
+    FROM employee e1, employee e2
+    WHERE e1.id = e2.manager_id)
+    SELECT DISTINCT employee.id, employee.first_name, employee.last_name, roles.title, roles.salary, manager.manager_name
+    FROM roles JOIN employee JOIN manager
+    ON roles.id = employee.role_id;
+
 
 -- Tish comments:
 SELECT first_name + ' ' + last_name 
