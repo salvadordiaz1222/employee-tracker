@@ -10,7 +10,7 @@ module.exports = {
         "View all employees",
         "Add employee",
         "Update employee role",
-        "view all roles",
+        "View all roles",
         "Add role",
         "View all departments",
         "Add department",
